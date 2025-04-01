@@ -17,12 +17,16 @@ export const BookCard = ({ book }: { book: IBook }) => {
         </p>
       </div>
       <h2 className='text-lg font-semibold text-gray-800'>{book.title}</h2>
-      <p className='text-gray-600'>{book.alastname}, {book.afirstnames}</p>
+      <p className='text-gray-600'>
+        {book.alastname}, {book.afirstnames}
+      </p>
       <p className='text-gray-600'>Comment: {book.comment}</p>
       <div className='flex flex-row content-center justify-center'>
         <button
           className='bg-blue-500 text-white px-4 py-2 rounded-lg mt-2'
-          onClick={() => navigate(`/book/edit/${book.id}`)}
+          onClick={() =>
+            navigate(`${process.env.PUBLIC_URL}/book/edit/${book.id}`)
+          }
         >
           Edit
         </button>

@@ -64,7 +64,7 @@ export const BookForm = () => {
       console.log('Book added with id:', id);
       // Optionally, you can reset the form or redirect the user
       //reset();
-      navigate('/book/list');
+      navigate('${process.env.PUBLIC_URL}/book/list');
     } catch (error) {
       console.error('Failed to add book:', error);
     }
