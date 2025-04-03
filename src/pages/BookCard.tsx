@@ -12,16 +12,19 @@ export const BookCard = ({ book }: { book: IBook }) => {
         <div className='font-medium text-gray-800 px-2'>{book.title}</div>
       </div>
       <div className='flex justify-start content-center text-lg rounded-md px-2 py-1 my-0.5'>
-        <span className='text-gray-400 px-2'>Author:</span>
-        <div className='text-gray-600'>
+        <span className='text-gray-400'>Author:</span>
+        <div className='text-gray-600 px-2'>
           {book.alastname}, {book.afirstnames}
         </div>
       </div>
       <div className='flex justify-start content-center text-lg rounded-md px-2 py-1 my-0.5'>
-        <span className='text-gray-400 px-2'>Comment:</span>
-        <div className='text-gray-600'>{book.comment}</div>
+        <span className='text-gray-400'>Comment:</span>
+        <div className='text-gray-600 px-2'>{book.comment}</div>
       </div>
-
+      <div className='flex justify-start content-center text-lg rounded-md px-2 py-1 my-0.5'>
+        <span className='text-gray-400 '>Status:</span>
+        <div className='text-gray-600 px-2'>{book.status}</div>
+      </div>
       <div className='flex flex-row justify-center'>
         <button
           className='bg-blue-500 text-white w-32 rounded-lg mt-2 mr-2'
