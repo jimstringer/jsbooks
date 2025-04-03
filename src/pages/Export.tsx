@@ -1,3 +1,7 @@
+// This file exports the book list to a json file
+// Should change it to so user can enter the name of the file
+// and the file will be saved with that name
+
 import { exportDB } from 'dexie-export-import';
 import { db } from '../models/db';
 
@@ -23,7 +27,7 @@ export const Export = () => {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'bookList.json';
+            a.download = 'dexie-export.json';
             a.click();
             URL.revokeObjectURL(url);
           } catch (error) {

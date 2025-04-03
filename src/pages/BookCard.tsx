@@ -1,9 +1,32 @@
 import { useNavigate } from 'react-router';
 import { IBook } from '../models/Book';
 import { db } from '../models/db';
+import { useConfirmAlert } from '../hooks/UseConfirmAlert';
+//import { AlertComponentProps } from '../providers/AlertProvider';
 
 export const BookCard = ({ book }: { book: IBook }) => {
   const navigate = useNavigate();
+
+  const { showAlert } = useConfirmAlert();
+
+  const handleDelete = async () => {
+    if (book.id !== undefined) {
+      await db.bookList.delete(book.id);
+    } else {
+      console.error('Book ID is undefined, cannot delete.');
+    }
+    console.log('Book deleted with id:', book.id);
+  };
+  const handleDeleteClick = () => {
+    showAlert({
+      title: 'Are you sure?',
+      confirmMessage: 'This action cannot be undone.',
+      onConfirm: async () => {
+        await handleDelete();
+      }
+    });
+  };
+
   return (
     <div className='flex flex-col bg-gray-100 p-1 rounded-lg shadow-md'>
       <div className='flex flex-row justify-between'></div>
@@ -34,15 +57,7 @@ export const BookCard = ({ book }: { book: IBook }) => {
         </button>
         <button
           className='bg-red-500 text-white w-32 rounded-lg mt-2'
-          onClick={async () => {
-            // Logic to delete the book
-            if (book.id !== undefined) {
-              await db.bookList.delete(book.id);
-            } else {
-              console.error('Book ID is undefined, cannot delete.');
-            }
-            console.log('Book deleted with id:', book.id);
-          }}
+          onClick={handleDeleteClick}
         >
           Delete
         </button>
