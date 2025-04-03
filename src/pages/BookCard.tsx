@@ -5,33 +5,32 @@ import { db } from '../models/db';
 export const BookCard = ({ book }: { book: IBook }) => {
   const navigate = useNavigate();
   return (
-    <div className='flex flex-col bg-gray-100 p-2 rounded-lg shadow-md'>
-      <div className='flex flex-row justify-between'>
-        <p
-          className={`text-lg ${book.have ? 'text-green-500' : 'text-pink-500'}`}
-        >
-          {book.have ? 'Have' : 'Need'}
-        </p>
-        <p className={`${book.read ? 'text-green-500' : 'text-pink-500'}`}>
-          {book.read ? 'Read' : 'Not-Read'}
-        </p>
+    <div className='flex flex-col bg-gray-100 p-1 rounded-lg shadow-md'>
+      <div className='flex flex-row justify-between'></div>
+      <div className='flex justify-start content-center text-lg rounded-md px-2 py-1 my-0.5'>
+        <span className='text-gray-400 '>Title:</span>
+        <div className='font-medium text-gray-800 px-2'>{book.title}</div>
       </div>
-      <h2 className='text-lg font-semibold text-gray-800'>{book.title}</h2>
-      <p className='text-gray-600'>
-        {book.alastname}, {book.afirstnames}
-      </p>
-      <p className='text-gray-600'>Comment: {book.comment}</p>
-      <div className='flex flex-row content-center justify-center'>
+      <div className='flex justify-start content-center text-lg rounded-md px-2 py-1 my-0.5'>
+        <span className='text-gray-400 px-2'>Author:</span>
+        <div className='text-gray-600'>
+          {book.alastname}, {book.afirstnames}
+        </div>
+      </div>
+      <div className='flex justify-start content-center text-lg rounded-md px-2 py-1 my-0.5'>
+        <span className='text-gray-400 px-2'>Comment:</span>
+        <div className='text-gray-600'>{book.comment}</div>
+      </div>
+
+      <div className='flex flex-row justify-center'>
         <button
-          className='bg-blue-500 text-white px-4 py-2 rounded-lg mt-2'
-          onClick={() =>
-            navigate(`${process.env.PUBLIC_URL}/book/edit/${book.id}`)
-          }
+          className='bg-blue-500 text-white w-32 rounded-lg mt-2 mr-2'
+          onClick={() => navigate(`/book/edit/${book.id}`)}
         >
           Edit
         </button>
         <button
-          className='bg-red-500 text-white px-4 py-2 rounded-lg mt-2'
+          className='bg-red-500 text-white w-32 rounded-lg mt-2'
           onClick={async () => {
             // Logic to delete the book
             if (book.id !== undefined) {
